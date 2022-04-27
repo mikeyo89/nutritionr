@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="text-center">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="display: inline-flex;">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold active rounded-pill" id="pills-recipe-tab" data-bs-toggle="pill" data-bs-target="#pills-recipe" type="button" role="tab" aria-controls="pills-recipe" aria-selected="true">Recipes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold rounded-pill" id="pills-food-tab" data-bs-toggle="pill" data-bs-target="#pills-food" type="button" role="tab" aria-controls="pills-food" aria-selected="false">Food</button>
+                </li>
+                <!--li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                </li-->
+            </ul>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-8 offset-2">
+                <h3>Search</h3>
+
+                <div class="tab-content pt-3" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-recipe" role="tabpanel" aria-labelledby="pills-recipe-tab">
+                        <form action="GET">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Recipe Name</label>
+                                <input type="text" class="form-control" id="recipe_name" name="recipe_name" aria-describedby="recipeName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recommendation" class="form-label">Recommendation</label>
+                                <input type="text" class="form-control" id="recommendation">
+                                <div id="recipeName" class="form-text">e.g. Vegetarian, Vegan, Low Carb, etc.</div>
+                            </div><br>
+                            
+                            <button type="submit" class="btn btn-success rounded-pill btn-pill-w">Find Recipes</button>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="pills-food-tab">
+                        <form action="GET">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Food Item</label>
+                                <input type="text" class="form-control" id="recipe_name" name="recipe_name" aria-describedby="recipeName" required>
+                            </div><br>
+                            
+                            <button type="submit" class="btn btn-success rounded-pill btn-pill-w">Get Nutrition Facts</button>
+                        </form>
+                    </div>
+                    <!--div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        Hola 3
+                    </div-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

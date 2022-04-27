@@ -1,0 +1,37 @@
+.w-90 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    height: fit-content;
+    width: 100%;
+    background-color: white;
+    color: #000000;
+}
+
+button.nav-link {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+button.nav-link.fw-bold.rounded-pill:not(.active) {
+    color: #198754;
+}
+
+button.nav-link.fw-bold.rounded-pill.active {
+    background-color: #198754;
+}
+
+.btn-pill-w {
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-grey {
+    color: #232323;
+}
