@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Recipe Results{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-8 offset-2">
+        <h3>Results for '{{ search_query }}' {% if recommendation %} and '{{ recommendation }}'{% endif %}</h3>
+    </div>
+</div>
+{% endblock content %}

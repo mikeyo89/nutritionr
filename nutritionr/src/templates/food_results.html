@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Food Results{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-8 offset-2">
+        <h3>Top 5 Results for '{{ search_query }}'</h3><br>
+        {% if results %}
+            {% for food in results %}
+            <p>
+                <a class="btn btn-outline-success w-100 fw-bold" data-bs-toggle="collapse" href="#{{ food.pk }}" role="button" aria-expanded="false" aria-controls="{{ food.pk }}">
+                    {{ food.label }}
+                </a>
+                <div class="collapse" id="{{ food.pk }}">
+                    <div class="card card-body text-grey">
+                        <div class="row">
+                            <div class="col-sm-6 text-center">
+                                <img src="{{ food.image_uri }}" height="250px">
+                            </div>
+                            <div class="col-sm-6">
+                                <h4 class="text-center">{{ food.label }} Nutrition Facts</h4>
+                                <table class="table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-bold">Calories</th>
+                                            <td>{{ food.calories|floatformat }} cals</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Protein</th>
+                                            <td>{{ food.protein|floatformat }}g</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fat</th>
+                                            <td>{{ food.fat|floatformat }}g</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fiber</th>
+                                            <td>{{ food.fiber|floatformat }}g</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+            {% endfor %}
+        {% else %}
+        <div class="row">
+            <div class="col-sm-10">
+                <br><h4>Sorry, no results were found 🙃</h4>
+                <h5 class="pt-2">Try making <a href="{% url 'index' %}" class="text-decoration-none">another search</a>.</h5>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

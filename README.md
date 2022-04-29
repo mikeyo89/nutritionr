@@ -20,7 +20,6 @@ Public Web Application Demo for showcasing uses of Edamam's Nutrition-based APIs
    >`python manage.py createcachetable`
 
 ### Congratulations, all dependencies are now installed!
-<br><br>
 
 **From here, simply run the web-app by doing the following:**
 
