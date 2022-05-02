@@ -25,7 +25,7 @@ Public Web Application Demo for showcasing uses of Edamam's Nutrition-based APIs
 
 1. In a command shell, run the following command:
     >`python manage.py runserver`
-2. Navigate to <a href="127.0.0.1:35729">127.0.0.1:35729</a> on your preferred browser.
+2. Navigate to <a href="127.0.0.1:8000">127.0.0.1:8000</a> on your preferred browser.
 3. You're free to use the application as you wish!
 
 **That is all, folks!**

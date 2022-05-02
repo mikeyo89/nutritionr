@@ -6,7 +6,7 @@ from models import RecipeModel, RecipeNutritionModel, RecipeIngredientsModel
 
 """
 url = "https://edamam-recipe-search.p.rapidapi.com/search"
-params = {"q": "Vegetarian Chicken Sandwich"}       # Search literally any recipe/food type (string).
+params = {"q":"chicken", "r":"vegetarian"}          # Search literally any recipe/food type (string).
 
 headers = {
 	"X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com",

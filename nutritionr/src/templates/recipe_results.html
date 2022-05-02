@@ -4,8 +4,201 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-sm-8 offset-2">
-        <h3>Results for '{{ search_query }}' {% if recommendation %} and '{{ recommendation }}'{% endif %}</h3>
+    <div class="col-sm-10 offset-1">
+        <h3>Results for '{{ search_query }}' {% if diet %} and '{{ diet }}'{% endif %}</h3><br>
+        {% if results %}
+            {% for recipe in results %}
+            <p>
+                <a class="btn btn-outline-success w-100 fw-bold" data-bs-toggle="collapse" href="#{{ recipe.pk }}" role="button" aria-expanded="false" aria-controls="{{ recipe.pk }}">
+                    {{ recipe.label }}
+                </a>
+                <div class="collapse" id="{{ recipe.pk }}">
+                    <div class="card card-body text-grey">
+                        <h5 class="text-center col-sm-4 offset-4">{{ recipe.label }}</h5>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-6 text-center">
+                                <h5>Ingredients</h5>
+                                <div class="row pt-1">
+                                    <div class="col">
+                                        <h6>Yields {{ recipe.servings_yield|floatformat }} servings</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 text-center">
+                                <h5>Nutrition Facts</h5>
+                                <div class="row pt-1">
+                                    <div class="col-3 offset-4"><h6>Per Serving</h6></div>
+                                    <div class="col"><h6>Total</h6></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <table class="table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        {% for ingredient in recipe.ingredients %}
+                                        <tr>
+                                            <th scope="row">{% if ingredient.image_uri %}<img src="{{ ingredient.image_uri }}" height="75px">{% else %}<div style="height: 65px;">No Image!</div>{% endif %}</th>
+                                            <td>{{ ingredient.label }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <table class="table table-striped">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Calories</th>
+                                            <td>{{ recipe.nutrition_serving.calories|floatformat }} cals</td>
+                                            <td>{{ recipe.nutrition.calories|floatformat }} cals</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Protein</th>
+                                            <td>{{ recipe.nutrition_serving.protein }}</td>
+                                            <td>{{ recipe.nutrition.protein }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fat</th>
+                                            <td>{{ recipe.nutrition_serving.total_fat }}</td>
+                                            <td>{{ recipe.nutrition.total_fat }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Carbs</th>
+                                            <td>{{ recipe.nutrition_serving.carbs }}</td>
+                                            <td>{{ recipe.nutrition.carbs }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sugar</th>
+                                            <td>{{ recipe.nutrition_serving.sugar }}</td>
+                                            <td>{{ recipe.nutrition.sugar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sugar Added</th>
+                                            <td>{{ recipe.nutrition_serving.sugar_added }}</td>
+                                            <td>{{ recipe.nutrition.sugar_added }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cholesterol</th>
+                                            <td>{{ recipe.nutrition_serving.cholesterol }}</td>
+                                            <td>{{ recipe.nutrition.cholesterol }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sodium</th>
+                                            <td>{{ recipe.nutrition_serving.sodium }}</td>
+                                            <td>{{ recipe.nutrition.sodium }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fiber</th>
+                                            <td>{{ recipe.nutrition_serving.fiber }}</td>
+                                            <td>{{ recipe.nutrition.fiber }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Iron</th>
+                                            <td>{{ recipe.nutrition_serving.iron }}</td>
+                                            <td>{{ recipe.nutrition.iron }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Calcium</th>
+                                            <td>{{ recipe.nutrition_serving.calcium }}</td>
+                                            <td>{{ recipe.nutrition.calcium }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Potassium</th>
+                                            <td>{{ recipe.nutrition_serving.potassium }}</td>
+                                            <td>{{ recipe.nutrition.potassium }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table><br>
+
+                                <h5 class="text-center">Nutrition Facts (%)</h5>
+                                <h6 class="text-center">Based on daily 2,000 calorie diet</h6>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Per Serving</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Calories</th>
+                                            <td>{{ recipe.nutrition_daily_serving.calories|floatformat }}%</td>
+                                            <td>{{ recipe.nutrition_daily.calories|floatformat }}%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Protein</th>
+                                            <td>{{ recipe.nutrition_daily_serving.protein }}</td>
+                                            <td>{{ recipe.nutrition_daily.protein }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fat</th>
+                                            <td>{{ recipe.nutrition_daily_serving.total_fat }}</td>
+                                            <td>{{ recipe.nutrition_daily.total_fat }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Carbs</th>
+                                            <td>{{ recipe.nutrition_daily_serving.carbs }}</td>
+                                            <td>{{ recipe.nutrition_daily.carbs }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Cholesterol</th>
+                                            <td>{{ recipe.nutrition_daily_serving.cholesterol }}</td>
+                                            <td>{{ recipe.nutrition_daily.cholesterol }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sodium</th>
+                                            <td>{{ recipe.nutrition_daily_serving.sodium }}</td>
+                                            <td>{{ recipe.nutrition_daily.sodium }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Fiber</th>
+                                            <td>{{ recipe.nutrition_daily_serving.fiber }}</td>
+                                            <td>{{ recipe.nutrition_daily.fiber }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Iron</th>
+                                            <td>{{ recipe.nutrition_daily_serving.iron }}</td>
+                                            <td>{{ recipe.nutrition_daily.iron }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Calcium</th>
+                                            <td>{{ recipe.nutrition_daily_serving.calcium }}</td>
+                                            <td>{{ recipe.nutrition_daily.calcium }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Potassium</th>
+                                            <td>{{ recipe.nutrition_daily_serving.potassium }}</td>
+                                            <td>{{ recipe.nutrition_daily.potassium }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <p class="text-center pt-1">Get instructions and share this recipe via this link:<br>
+                            <a href="{{ recipe.share_as_uri }}" target="_blank" class="text-decoration-none">{{ recipe.label }}</a>.
+                        </p>
+                    </div>
+                </div>
+            </p>
+            {% endfor %}
+        {% else %}
+        <div class="row">
+            <div class="col-sm-10">
+                <br><h4>Sorry, no results were found 🙃</h4>
+                <h5 class="pt-2">Try making <a href="{% url 'index' %}" class="text-decoration-none">another search</a>.</h5>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
