@@ -4,7 +4,7 @@ from models import RecipeModel, RecipeNutritionModel, RecipeIngredientsModel
 # Website URL (docs): https://rapidapi.com/edamam/api/recipe-search-and-diet/
 # Website URL (docs): https://rapidapi.com/edamam/api/edamam-nutrition-analysis/
 
-"""
+"""     Use this first to store testing data.
 url = "https://edamam-recipe-search.p.rapidapi.com/search"
 params = {"q":"chicken", "r":"vegetarian"}          # Search literally any recipe/food type (string).
 
@@ -12,8 +12,10 @@ headers = {
 	"X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com",
 	"X-RapidAPI-Key": "a5b0806962mshe36b0ed1b7175d5p152becjsnc7ea3913781c"
 }
-
 response = requests.get(url, headers=headers, params=params)
+
+with open('recipesResponse.txt', w+) as f:
+    f.write(response.text)
 """
 
 json_response: str

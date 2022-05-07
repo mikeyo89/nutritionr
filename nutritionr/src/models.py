@@ -20,16 +20,6 @@ class IngredientsModel:
         self.fiber = fiber
         self.image_uri = image_uri
 
-    def report_nutrient_data(self):
-        """ Write out the results gathered for this item. """
-        return f"""
-        '{self.label}' Nutritional Facts:
-            >>> Calories:   {self.calories}
-            >>> Protein:    {self.protein}g
-            >>> Fat:        {self.fat}g
-            >>> Fiber:      {self.fiber}g
-        """
-
 class RecipeIngredientsModel:
     """ Model for storing an ingredient and an image of it derived from a Recipe. """
     label: str
@@ -94,19 +84,4 @@ class RecipeModel:
         self.nutrition_serving = nutrition_serving
         self.nutrition_daily = nutrition_daily
         self.nutrition_daily_serving = nutrition_daily_serving
-    
-    def report_recipe_data(self):
-        return f"""
-            Recipe Name:        {self.label}
-            Cuisine Type:       {self.cuisine_type}
-            Servings Yield:     {self.servings_yield}
-            Ingredients:        {[ingredient.label for ingredient in self.ingredients]}
-
-            Total Nutrition Facts:
-            Calories/Serving:   {(self.nutrition.calories / self.servings_yield):.2f}
-            Protein:            {self.nutrition.protein}
-            Total Fats:         {self.nutrition.total_fat}
-            Carbs:              {self.nutrition.carbs}
-
-            Share this recipe via: {self.share_as_uri}
-        """
+        
